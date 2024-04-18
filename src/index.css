@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#sky {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  z-index: 20;
+}
+
+#shootingstars {
+  margin: 0;
+  padding: 0;
+  width: 150vh;
+  height: 100vw;
+  z-index: 20;
+  position: fixed;
+  overflow: hidden;
+  transform: translatex(calc(50vw - 50%)) translatey(calc(50vh - 50%))
+    rotate(120deg);
+}
+
+.wish {
+  height: 2px;
+  top: 300px;
+  width: 100px;
+  margin: 0;
+  opacity: 0;
+  padding: 0;
+  background-color: black;
+  position: absolute;
+  background: linear-gradient(-45deg, white, rgba(0, 0, 255, 0));
+  filter: drop-shadow(0 0 6px white);
+  overflow: hidden;
+}
+
+main {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+}
+
+.sea-animation {
+  width: 100vw;
+  background-image: url('./assets/images/waves1.png');
+  position: absolute;
+  bottom: 0;
+  z-index: 60;
+}
+
+.sea-animation-two {
+  width: 100vw;
+  background-image: url('./assets/images/waves2.png');
+  position: absolute;
+  background-position: 0% 5%;
+  bottom: 60px;
+  z-index: 25;
+}
+
+.sea-animation-three {
+  width: 100vw;
+  background-image: url('./assets/images/waves3.png');
+  position: absolute;
+  bottom: 35px;
+  z-index: 35;
+}
