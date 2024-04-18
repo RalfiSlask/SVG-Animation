@@ -16,8 +16,8 @@ import OpenChest from './assets/images/open.png';
 import ClosedChest from './assets/images/closed.png';
 import Lightbox from './components/Lightbox';
 import Skeleton from './assets/images/skeleton.png';
-/* import Ship from './assets/images/ship.png';
-import Turtle from './assets/images/turtle.jpg'; */
+import Ship from './assets/images/ship.png';
+/* import Turtle from './assets/images/turtle.jpg'; */
 
 function App() {
   const jackRef = useRef(null);
@@ -32,6 +32,7 @@ function App() {
   const scrollRef = useRef(null);
   const laughRef = useRef(null);
   const themeRef = useRef(null);
+  const shipRef = useRef(null);
   const [scroll, setScroll] = useState(0);
   const [chestOpen, setChestOpen] = useState(false);
 
@@ -63,7 +64,7 @@ function App() {
       strokeDasharray: (i, target) => {
         return target.getTotalLength();
       },
-      stroke: '#000',
+      stroke: scroll > 90 ? '#FFF' : '#000',
       strokeWidth: 1,
       fill: 'none',
     });
@@ -132,6 +133,13 @@ function App() {
   };
 
   useEffect(() => {
+    gsap.to(shipRef.current, {
+      x: (scroll / 100) * -window.innerWidth * 0.3,
+      y: 30 * Math.sin(0.5 * scroll),
+      duration: 0.6,
+      ease: 'none',
+    });
+
     gsap.to(birdRef.current, {
       x: (scroll / 100) * window.innerWidth,
       ease: 'none',
@@ -180,7 +188,7 @@ function App() {
       <div
         ref={birdRef}
         onClick={playLaugh}
-        className="w-[200px] h-[200px] absolute z-50 top-[-5%] left-1/2 cursor-pointer"
+        className="w-[200px] h-[200px] absolute z-50 top-[-5%] left-1/2 -translate-x-1/2 sm:translate-x-0 cursor-pointer"
       >
         <audio
           ref={laughRef}
@@ -217,6 +225,14 @@ function App() {
           />
         </div>
       </div>
+      <img
+        ref={shipRef}
+        src={Ship}
+        alt="pirate ship"
+        width="400"
+        height="200"
+        className="absolute z-30 bottom-8 sm:bottom-16 right-0 sm:right-[5%] 2xl:right-[10%]"
+      />
       <div>
         <img
           ref={themeRef}
