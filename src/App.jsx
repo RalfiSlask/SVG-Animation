@@ -192,7 +192,7 @@ function App() {
           alt="chest"
           width="200"
           height="400"
-          className="absolute left-1/2 -translate-x-1/2 bottom-20 sm:bottom-44 cursor-pointer h-[80px] w-[120px] z-[34] sm:z-50"
+          className="absolute left-1/2 hover:scale-110 transition-all duration-300 ease-in-out -translate-x-1/2 bottom-20 sm:bottom-44 cursor-pointer h-[80px] w-[120px] z-[34] sm:z-50"
         />
 
         <audio

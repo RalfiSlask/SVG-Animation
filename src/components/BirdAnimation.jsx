@@ -9,7 +9,11 @@ const BirdAnimation = () => {
 
   const { View } = useLottie(options);
 
-  return <div className="cursor-pointer">{View}</div>;
+  return (
+    <div className="cursor-pointer hover:scale-125 transition-all duration-300 ease-in-out">
+      {View}
+    </div>
+  );
 };
 
 export default BirdAnimation;
