@@ -201,15 +201,17 @@ function App() {
         </audio>
         <BirdAnimation />
       </div>
-      <div
-        ref={scrollRef}
-        className={`absolute right-[5%] bottom-[50%] sm:bottom-[20%] w-[100px] h-[100px] transition-all duration-500 ease-in z-50 ${
-          scroll > 80 ? 'rotate-180' : 'rotate-0'
-        }`}
-      >
-        <ScrollAnimation />
-      </div>
-      <div className="absolute left-1/2 top-[20%] -translate-x-1/2 z-40 flex items-center gap-4">
+      {window.innerWidth > 500 && (
+        <div
+          ref={scrollRef}
+          className={`absolute right-[5%] bottom-[50%] sm:bottom-[20%] w-[100px] h-[100px] transition-all duration-500 ease-in z-50 ${
+            scroll > 80 ? 'rotate-180' : 'rotate-0'
+          }`}
+        >
+          <ScrollAnimation />
+        </div>
+      )}
+      <div className="absolute left-1/2 top-[15%] sm:top-[20%] -translate-x-1/2 z-40 flex items-center gap-4">
         <TextAnimation jackRef={jackRef} />
       </div>
 
