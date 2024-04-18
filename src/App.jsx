@@ -169,8 +169,8 @@ function App() {
       >
         <audio
           ref={laughRef}
-          src="./src/assets/sounds/laugh.mp3"
-          /*    src="/SVG-Animation/laugh.mp3" */
+          /* src="./src/assets/sounds/laugh.mp3" */
+          src="/SVG-Animation/laugh.mp3"
           preload="auto"
         >
           Your browser has no support
@@ -212,8 +212,8 @@ function App() {
 
         <audio
           ref={themeRef}
-          src="./src/assets/sounds/pirates.mp3"
-          /*    src="/SVG-Animation/pirates.mp3" */
+          /*      src="./src/assets/sounds/pirates.mp3" */
+          src="/SVG-Animation/pirates.mp3"
           preload="auto"
         >
           Your browser has no support
