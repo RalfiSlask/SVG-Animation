@@ -15,6 +15,9 @@ import ScrollAnimation from './components/ScrollAnimation';
 import OpenChest from './assets/images/open.png';
 import ClosedChest from './assets/images/closed.png';
 import Lightbox from './components/Lightbox';
+import Skeleton from './assets/images/skeleton.png';
+/* import Ship from './assets/images/ship.png';
+import Turtle from './assets/images/turtle.jpg'; */
 
 function App() {
   const jackRef = useRef(null);
@@ -29,7 +32,6 @@ function App() {
   const scrollRef = useRef(null);
   const laughRef = useRef(null);
   const themeRef = useRef(null);
-
   const [scroll, setScroll] = useState(0);
   const [chestOpen, setChestOpen] = useState(false);
 
@@ -40,7 +42,20 @@ function App() {
     }
   };
 
-  useEffect(() => {
+  const animateText = () => {
+    if (!jackRef.current) {
+      console.log('SVG not loaded');
+      return;
+    }
+
+    const paths = jackRef.current.querySelectorAll('path');
+    if (paths.length === 0) {
+      console.log('No paths found');
+      return;
+    }
+
+    gsap.killTweensOf(paths);
+
     gsap.set(jackRef.current.querySelectorAll('path'), {
       strokeDashoffset: (i, target) => {
         return target.getTotalLength();
@@ -60,6 +75,10 @@ function App() {
       stagger: 0.2,
       fill: '#000',
     });
+  };
+
+  useEffect(() => {
+    animateText();
 
     gsap.to(birdRef.current, {
       delay: 0.2,
@@ -111,10 +130,6 @@ function App() {
       themeRef.current.currentTime = 0;
     }
   };
-
-  useEffect(() => {
-    console.log(chestOpen);
-  }, [chestOpen]);
 
   useEffect(() => {
     gsap.to(birdRef.current, {
@@ -169,8 +184,8 @@ function App() {
       >
         <audio
           ref={laughRef}
-          /* src="./src/assets/sounds/laugh.mp3" */
-          src="/SVG-Animation/laugh.mp3"
+          src="./src/assets/sounds/laugh.mp3"
+          /*      src="/SVG-Animation/laugh.mp3" */
           preload="auto"
         >
           Your browser has no support
@@ -185,17 +200,20 @@ function App() {
       >
         <ScrollAnimation />
       </div>
+      <div className="absolute left-1/2 top-[20%] -translate-x-1/2 z-40 flex items-center gap-4">
+        <TextAnimation jackRef={jackRef} />
+      </div>
 
-      <TextAnimation jackRef={jackRef} />
       <div className="w-[700px] h-[500px] absolute z-40 bottom-20 sm:bottom-32 left-1/2 -translate-x-1/2 flex items-end">
         <div className="relative w-full h-full">
           <PalmAnimation />
           <img
+            onClick={animateText}
             src={JackSparrow}
             alt="jack sparrow"
             height="160"
             width="160"
-            className="absolute h-[160px]  transition-all duration-300 ease-in-out z-30 sm:z-40 bottom-24 sm:bottom-12 right-[15%]"
+            className="absolute h-[160px] hover:scale-110 cursor-pointer transition-all duration-300 ease-in-out z-10 sm:z-40 bottom-16 sm:bottom-12 right-1/2 translate-x-1/2  sm:right-[15%] sm:translate-x-0"
           />
         </div>
       </div>
@@ -212,14 +230,22 @@ function App() {
 
         <audio
           ref={themeRef}
-          /*      src="./src/assets/sounds/pirates.mp3" */
-          src="/SVG-Animation/pirates.mp3"
+          src="./src/assets/sounds/pirates.mp3"
+          /*  src="/SVG-Animation/pirates.mp3" */
           preload="auto"
         >
           Your browser has no support
         </audio>
       </div>
-
+      <img
+        src={Skeleton}
+        alt="sceleton"
+        width="100"
+        height="100"
+        className={`${
+          scroll > 90 ? 'translate-0' : 'translate-y-20'
+        } transition-all duration-500 ease-in-out absolute z-30 sm:rotate-[-15deg] bottom-32 sm:bottom-48 xl:bottom-32 left-1/2 -translate-x-1/2 sm:left-[50%] md:left-[45%] xl:left-[35%] 2xl:left-[40%]`}
+      />
       <img
         ref={cloudOneRef}
         src={CloudOne}
