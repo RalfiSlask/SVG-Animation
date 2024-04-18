@@ -35,6 +35,22 @@ function App() {
   const shipRef = useRef(null);
   const [scroll, setScroll] = useState(0);
   const [chestOpen, setChestOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const resizeWindow = () => {
+      const screenSize = window.innerWidth;
+      setIsMobile(screenSize < 500);
+    };
+
+    window.addEventListener('resize', resizeWindow);
+
+    resizeWindow();
+
+    return () => {
+      window.removeEventListener('resize', resizeWindow);
+    };
+  }, []);
 
   const handleClickOnChest = () => {
     setChestOpen(true);
@@ -201,7 +217,8 @@ function App() {
         </audio>
         <BirdAnimation />
       </div>
-      {window.innerWidth > 500 && (
+
+      {!isMobile && (
         <div
           ref={scrollRef}
           className={`absolute right-[5%] bottom-[50%] sm:bottom-[20%] w-[100px] h-[100px] transition-all duration-500 ease-in z-50 ${
@@ -211,13 +228,14 @@ function App() {
           <ScrollAnimation />
         </div>
       )}
+
       <div className="absolute left-1/2 top-[15%] sm:top-[20%] -translate-x-1/2 z-40 flex items-center gap-4">
         <TextAnimation jackRef={jackRef} />
       </div>
 
       <div className="w-[700px] h-[500px] absolute z-40 bottom-20 sm:bottom-32 left-1/2 -translate-x-1/2 flex items-end">
         <div className="relative w-full h-full">
-          {window.innerWidth > 500 && <PalmAnimation />}
+          <PalmAnimation />
           <img
             onClick={animateText}
             src={JackSparrow}
@@ -244,7 +262,7 @@ function App() {
           alt="chest"
           width="200"
           height="400"
-          className="absolute left-1/2 hover:scale-110 transition-all duration-300 ease-in-out -translate-x-1/2 bottom-20 sm:bottom-48 cursor-pointer h-[80px] w-[120px] z-[34] sm:z-50"
+          className="absolute left-1/2 hover:scale-110 transition-all duration-300 ease-in-out -translate-x-1/2 bottom-28 sm:bottom-48 cursor-pointer h-[80px] w-[120px] z-[50] sm:z-50"
         />
 
         <audio
