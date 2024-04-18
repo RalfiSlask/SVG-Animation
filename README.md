@@ -2,7 +2,7 @@
 
 ## Screenshots
 
-<img src="https://github.com/RalfiSlask/Portfolio-RalfiSlask/assets/112242026/192fc331-ca68-42e8-9c68-081c3986247d" width="400" height="300" alt="Landing">
+<img src="https://github.com/RalfiSlask/SVG-Animation/assets/112242026/b358e303-53c8-4494-8538-4592153b3353" width="500" height="300" alt="Landing">
 
 ## Tech Stack
 
