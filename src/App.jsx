@@ -134,10 +134,11 @@ function App() {
 
   useEffect(() => {
     gsap.to(shipRef.current, {
-      x: (scroll / 100) * -window.innerWidth * 0.3,
+      x: (scroll / 100) * -window.innerWidth * 0.2,
       y: 30 * Math.sin(0.5 * scroll),
       duration: 0.6,
       ease: 'none',
+      once: true,
     });
 
     gsap.to(birdRef.current, {
@@ -145,7 +146,7 @@ function App() {
       ease: 'none',
     });
     gsap.to(moonRef.current, {
-      y: (scroll / 100) * -window.innerHeight,
+      y: 50 + (scroll / 100) * -window.innerHeight,
       ease: 'none',
     });
     gsap.to(jackRef.current.querySelectorAll('path'), {
@@ -221,7 +222,7 @@ function App() {
             alt="jack sparrow"
             height="160"
             width="160"
-            className="absolute h-[160px] hover:scale-110 cursor-pointer transition-all duration-300 ease-in-out z-10 sm:z-40 bottom-16 sm:bottom-12 right-1/2 translate-x-1/2  sm:right-[15%] sm:translate-x-0"
+            className="absolute h-[160px] hover:scale-110 cursor-pointer transition-all duration-300 ease-in-out z-10 sm:z-40 bottom-16 sm:bottom-12 right-1/2 translate-x-1/2 sm:right-[24%] md:right-[15%] sm:translate-x-0"
           />
         </div>
       </div>
@@ -231,7 +232,7 @@ function App() {
         alt="pirate ship"
         width="400"
         height="200"
-        className="absolute z-30 bottom-8 sm:bottom-16 right-0 sm:right-[5%] 2xl:right-[10%]"
+        className="absolute z-30 bottom-8 sm:bottom-16 left-1/2 -translate-x-1/2"
       />
       <div>
         <img
