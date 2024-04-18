@@ -14,6 +14,7 @@ import TextAnimation from './TextAnimation';
 import ScrollAnimation from './components/ScrollAnimation';
 import OpenChest from './assets/images/open.png';
 import ClosedChest from './assets/images/closed.png';
+import Lightbox from './components/Lightbox';
 
 function App() {
   const jackRef = useRef(null);
@@ -103,6 +104,18 @@ function App() {
     };
   }, []);
 
+  const closeMap = () => {
+    setChestOpen(false);
+    if (themeRef.current) {
+      themeRef.current.pause();
+      themeRef.current.currentTime = 0;
+    }
+  };
+
+  useEffect(() => {
+    console.log(chestOpen);
+  }, [chestOpen]);
+
   useEffect(() => {
     gsap.to(birdRef.current, {
       x: (scroll / 100) * window.innerWidth,
@@ -138,13 +151,14 @@ function App() {
 
   return (
     <>
+      {chestOpen && <Lightbox closeMap={closeMap} />}
       {scroll > 90 && (
         <div>
           <ShootingStars />
         </div>
       )}
       {chestOpen && (
-        <div className="absolute z-30 left-1/2 -translate-x-1/2 top-20">
+        <div className="absolute z-[999] w-[60%] h-[60%] max-w-[1200px] top-0 left-1/2 -translate-x-1/2">
           <MapAnimation />
         </div>
       )}
@@ -155,8 +169,8 @@ function App() {
       >
         <audio
           ref={laughRef}
-          /*   src="./src/assets/sounds/laugh.mp3" */
-          src="/SVG-Animation/laugh.mp3"
+          src="./src/assets/sounds/laugh.mp3"
+          /*    src="/SVG-Animation/laugh.mp3" */
           preload="auto"
         >
           Your browser has no support
@@ -181,7 +195,7 @@ function App() {
             alt="jack sparrow"
             height="160"
             width="160"
-            className="absolute h-[160px] z-30 sm:z-40 bottom-24 sm:bottom-12 right-[15%] cursor-pointer"
+            className="absolute h-[160px]  transition-all duration-300 ease-in-out z-30 sm:z-40 bottom-24 sm:bottom-12 right-[15%]"
           />
         </div>
       </div>
@@ -193,13 +207,13 @@ function App() {
           alt="chest"
           width="200"
           height="400"
-          className="absolute left-1/2 hover:scale-110 transition-all duration-300 ease-in-out -translate-x-1/2 bottom-20 sm:bottom-44 cursor-pointer h-[80px] w-[120px] z-[34] sm:z-50"
+          className="absolute left-1/2 hover:scale-110 transition-all duration-300 ease-in-out -translate-x-1/2 bottom-20 sm:bottom-48 cursor-pointer h-[80px] w-[120px] z-[34] sm:z-50"
         />
 
         <audio
           ref={themeRef}
-          /*   src="./src/assets/sounds/pirates.mp3" */
-          src="/SVG-Animation/pirates.mp3"
+          src="./src/assets/sounds/pirates.mp3"
+          /*    src="/SVG-Animation/pirates.mp3" */
           preload="auto"
         >
           Your browser has no support
@@ -222,7 +236,6 @@ function App() {
         height="200"
         className="absolute right-[15%] top-8 z-30"
       />
-
       <img
         src={Island}
         alt="island"
@@ -256,8 +269,8 @@ function App() {
       ></div>
 
       <main
-        className={`min-w-full w-full relative transition-all duration-500 ease-in ${
-          scroll > 90 ? 'bg-black' : 'bg-yellow-200'
+        className={`min-w-full w-full relative transition-all duration-300 ease-in ${
+          scroll > 90 ? 'bg-black' : 'bg-gradient'
         } z-10`}
         ref={mainRef}
       ></main>
