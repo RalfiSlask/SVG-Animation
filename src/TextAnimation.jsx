@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 const TextAnimation = ({ jackRef }) => {
   return (
-    <div className="w-[500px] h-[200px] rounded-xl flex justify-center items-centers absolute left-1/2 top-[20%] -translate-x-1/2 z-40">
+    <div className="w-[400px] h-[200px] rounded-xl flex justify-center items-centers ">
       <svg
         id="jack"
         data-name="jack"
