@@ -203,7 +203,7 @@ function App() {
       </div>
       <div
         ref={scrollRef}
-        className={`absolute right-[5%] bottom-[20%] transition-all duration-500 ease-in z-50 ${
+        className={`absolute right-[5%] bottom-[50%] sm:bottom-[20%] w-[100px] h-[100px] transition-all duration-500 ease-in z-50 ${
           scroll > 80 ? 'rotate-180' : 'rotate-0'
         }`}
       >
