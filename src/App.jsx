@@ -217,7 +217,7 @@ function App() {
 
       <div className="w-[700px] h-[500px] absolute z-40 bottom-20 sm:bottom-32 left-1/2 -translate-x-1/2 flex items-end">
         <div className="relative w-full h-full">
-          <PalmAnimation />
+          {window.innerWidth > 500 && <PalmAnimation />}
           <img
             onClick={animateText}
             src={JackSparrow}
